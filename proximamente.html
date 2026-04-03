@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Próximamente | FERCITODEV</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <style>
+        /* === TEMA MORADO (Solo para esta página) === */
+        :root {
+            --bg-deep: #1e103c; /* Fondo morado oscuro elegante */
+            --glass-bg: rgba(46, 20, 89, 0.6); /* Cristal tintado de morado */
+            --glass-border: rgba(168, 85, 247, 0.4); /* Borde lila */
+            --accent: #c084fc; /* Acento morado brillante */
+            --accent-glow: rgba(168, 85, 247, 0.5); /* Resplandor lila */
+            --text-main: #f3e8ff;
+            --text-muted: #d8b4fe;
+            --bg-pattern: radial-gradient(rgba(168, 85, 247, 0.15) 1px, transparent 1px);
+        }
+
+        body.dark-mode {
+            --bg-deep: #0b0314;
+            --glass-bg: rgba(26, 11, 56, 0.8);
+            --glass-border: rgba(147, 51, 234, 0.4);
+            --accent: #a855f7;
+            --accent-glow: rgba(126, 34, 206, 0.6);
+            --text-main: #f3e8ff;
+            --text-muted: #d8b4fe;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+        }
+
+        /* === DISEÑO DE LA PANTALLA === */
+        .coming-soon-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+
+        .coming-soon-card {
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 30px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 40px rgba(168, 85, 247, 0.15);
+            border: 1.5px solid var(--glass-border);
+        }
+
+        .coming-soon-icon {
+            font-size: 5.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: floatPurple 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px var(--accent-glow));
+        }
+
+        .coming-soon-card h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            font-weight: 900;
+        }
+
+        .coming-soon-card p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .highlight-text {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        /* === BOTÓN MEJORADO === */
+        .btn-return {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #a855f7, #7e22ce); /* Degradado morado premium */
+            color: #ffffff !important;
+            padding: 16px 30px;
+            border-radius: 50px; /* Diseño tipo píldora */
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 8px 20px rgba(126, 34, 206, 0.4); /* Sombra elegante */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn-return:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(126, 34, 206, 0.6);
+            background: linear-gradient(135deg, #c084fc, #9333ea);
+        }
+
+        .btn-return i {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-return:hover i {
+            transform: translateX(-5px); /* La flechita se mueve al hacer hover */
+        }
+
+        @keyframes floatPurple {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+
+    <div class="coming-soon-wrapper">
+        <div class="glass-panel coming-soon-card reveal-up">
+            <i class="ri-rocket-2-fill coming-soon-icon"></i>
+            
+            <h1>¡Próximamente!</h1>
+            
+            <p>
+                <span class="highlight-text">fercitodev.com</span> está trabajando para darte esta experiencia. Muy pronto podrás interactuar con este sistema en vivo.
+            </p>
+            
+            <a href="https://fercitodev.com/" class="btn-return">
+                <i class="ri-arrow-left-line"></i> Regresar al Inicio
+            </a>
+        </div>
+    </div>
+
+    <script src="js/home.js"></script>
+</body>
+</html>

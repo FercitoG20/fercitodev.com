@@ -7,12 +7,12 @@
     --accent: #0284c7; 
     --accent-glow: rgba(2, 132, 199, 0.25); 
     --bg-pattern: radial-gradient(rgba(2, 132, 199, 0.15) 1px, transparent 1px);
-    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.10);
     --glow-top: 30%; --glow-left: 40%; --glow-width: 60vw; --glow-height: 60vh; --glow-blur: 90px;
-    --logo-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    --logo-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --btn-primary-text: #ffffff;
-    --btn-primary-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
-    --btn-primary-hover-shadow: 0 6px 20px rgba(2, 132, 199, 0.5);
+    --btn-primary-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+    --btn-primary-hover-shadow: 0 6px 15px rgba(2, 132, 199, 0.3);
     --btn-primary-hover-transform: translateY(-2px);
 }
 
@@ -25,7 +25,7 @@ body.dark-mode {
     --accent: #0ea5e9; 
     --accent-glow: rgba(14, 165, 233, 0.4);
     --bg-pattern: transparent;
-    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
     --glow-top: 50%; --glow-left: 50%; --glow-width: 70vw; --glow-height: 70vh; --glow-blur: 120px;
 }
 
@@ -50,7 +50,7 @@ body {
 .glass-panel {
     background: var(--glass-bg);
     backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-    border: 2px solid var(--glass-border) !important;
+    border: 1.5px solid var(--glass-border) !important;
     box-shadow: var(--glass-shadow);
 }
 
@@ -76,14 +76,18 @@ body {
 .nav-link:hover { color: var(--accent); }
 
 .btn-theme {
-    background: rgba(14, 165, 233, 0.1); border: 1px solid var(--glass-border); color: var(--text-main);
+    background: transparent; border: 1.5px solid var(--glass-border); color: var(--text-main);
     padding: 8px 18px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.2s;
 }
+.btn-theme:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
 .btn-action {
-    background: rgba(2, 132, 199, 0.1); border: 1px solid var(--accent); color: var(--accent);
+    background: transparent; border: 1.5px solid var(--accent); color: var(--accent);
     padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;
-    display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s;
 }
+.btn-action:hover { background: rgba(2, 132, 199, 0.1); }
+
 .btn-action.primary {
     background: var(--accent); color: var(--btn-primary-text); padding: 15px 35px;
     border: none; box-shadow: var(--btn-primary-shadow); cursor: pointer;
@@ -91,6 +95,7 @@ body {
 .btn-action.primary:hover { 
     box-shadow: var(--btn-primary-hover-shadow); 
     transform: var(--btn-primary-hover-transform); 
+    background: var(--text-main);
 }
 
 .mobile-menu-btn { display: none; font-size: 2rem; color: var(--accent); cursor: pointer; }
@@ -111,26 +116,12 @@ body {
     align-items: center; 
 }
 
-.hero-glass-card { 
-    padding: 50px; 
-    border-radius: 30px; 
-    align-self: center; 
-}
-
-.visual-container { 
-    height: 500px; 
-    border-radius: 30px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-}
+.hero-glass-card { padding: 50px; border-radius: 30px; align-self: center; }
+.visual-container { height: 500px; border-radius: 30px; display: flex; align-items: center; justify-content: center; }
 
 .floating-img {
-    max-width: 85%;
-    max-height: 85%;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    max-width: 85%; max-height: 85%; object-fit: cover; border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     animation: floatImage 6s ease-in-out infinite;
 }
 
@@ -145,35 +136,162 @@ body {
     font-size: 0.75rem; font-weight: 800; margin-bottom: 25px; display: inline-block;
 }
 
-h1 { 
-    font-size: clamp(3rem, 5vw, 4.8rem); 
-    margin: 0; 
-    line-height: 1.2; 
-    letter-spacing: -2px; 
-    font-weight: 900; 
-}
+h1 { font-size: clamp(3rem, 5vw, 4.8rem); margin: 0; line-height: 1.2; letter-spacing: -2px; font-weight: 900; }
 h1.outline { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
 
-.section-container { padding: 120px 10%; }
-.section-title { font-size: 3.5rem; margin-bottom: 60px; text-align: center; font-weight: 900; }
+.section-container { padding: 100px 10%; }
+.section-title { font-size: 3rem; margin-bottom: 50px; text-align: center; font-weight: 900; }
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
-.service-card { padding: 50px 40px; border-radius: 30px; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.service-card i { font-size: 3.5rem; color: var(--accent); margin-bottom: 25px; display: block; }
-.service-card h3 { margin-bottom: 15px; font-size: 1.6rem; font-weight: 800; }
-.service-card p { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; }
-.service-card:hover { transform: translateY(-15px); background: var(--glass-bg); }
+.service-card { padding: 40px 30px; border-radius: 25px; text-align: center; transition: all 0.3s ease; }
+.service-card i { font-size: 3.2rem; color: var(--accent); margin-bottom: 20px; display: block; }
+.service-card h3 { margin-bottom: 12px; font-size: 1.4rem; font-weight: 800; }
+.service-card p { color: var(--text-muted); line-height: 1.6; font-size: 1rem; margin: 0; }
+.service-card:hover { transform: translateY(-10px); }
+
+/* --- CARRUSEL --- */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    border-radius: 25px; 
+    cursor: grab;
+    padding: 20px 0;
+}
+.carousel-container:active { cursor: grabbing; }
+
+.carousel-track {
+    display: flex;
+    gap: 30px; 
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-item {
+    flex: 0 0 55%; 
+    min-width: 55%;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0.4; 
+    transform: scale(0.85); 
+}
+
+.carousel-item.is-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.carousel-card-small {
+    padding: 25px 20px !important; 
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.card-img-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background: transparent;
+}
+
+.card-image {
+    width: 100%;
+    max-width: 320px; 
+    height: auto; 
+    object-fit: contain; 
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15)); 
+}
+
+.carousel-card-small h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.carousel-card-small p { font-size: 0.95rem; margin-bottom: 0; }
+
+.card-btn-container {
+    margin-top: 20px; 
+    display: flex; 
+    justify-content: center; 
+    width: 100%;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover { background: var(--accent); color: white; transform: translateY(-50%) scale(1.05); }
+.left-arrow { left: 15px; }
+.right-arrow { right: 15px; }
+
+.btn-view {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 1.5px solid var(--accent); color: var(--text-main);
+    padding: 6px 18px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;
+    text-decoration: none; transition: 0.3s;
+}
+.btn-view:hover { background: var(--accent); color: white; transform: translateY(-2px); }
 
 .footer {
     position: fixed; bottom: 10px; left: 10px; right: 10px; height: 60px;
     border-radius: 16px; z-index: 1000; display: flex; justify-content: center; align-items: center;
 }
 
+/* --- BOTÓN WHATSAPP FLOTANTE --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    color: #ffffff;
+}
+
 @keyframes revealUp {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
-.reveal-up { animation: revealUp 0.8s ease-out forwards; }
+.reveal-up { animation: revealUp 0.6s ease-out forwards; }
+
 
 @media (max-width: 1100px) {
     .navbar { padding: 0 20px; }
@@ -185,7 +303,7 @@ h1.outline { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
     
     .nav-menu {
         position: absolute; top: 85px; left: 10px; right: 10px;
-        background: var(--bg-deep); border: 2px solid var(--glass-border);
+        background: var(--bg-deep); border: 1.5px solid var(--glass-border);
         border-radius: 16px; flex-direction: column; padding: 25px; gap: 15px;
         box-shadow: var(--glass-shadow);
         opacity: 0; pointer-events: none; transform: translateY(-15px);
@@ -195,32 +313,31 @@ h1.outline { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
     .nav-menu.active { opacity: 1; pointer-events: all; transform: translateY(0); }
     .nav-menu .nav-link, .nav-menu .btn-theme, .nav-menu .btn-action { width: 100%; text-align: center; justify-content: center; }
 
-    .hero { 
-        align-items: flex-start;
-        padding: 120px 5% 120px; 
-        height: auto; 
-    } 
-    
+    .hero { align-items: flex-start; padding: 120px 5% 120px; height: auto; } 
     .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
     .hero-glass-card { padding: 40px 20px; }
-    h1 { 
-        font-size: clamp(2.5rem, 8vw, 3.5rem); 
-        line-height: 1.3;
-        letter-spacing: -0.5px;
-    } 
+    h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); line-height: 1.3; letter-spacing: -0.5px; } 
     .visual-container { height: 350px; }
     
-    .hero-btns { 
-        display: flex; 
-        flex-direction: column; 
-        gap: 15px; 
-        width: 100%;
-    }
-    .hero-btns .btn-action { 
-        width: 100%; 
-        box-sizing: border-box;
-        justify-content: center; 
-    }
+    .hero-btns { display: flex; flex-direction: column; gap: 15px; width: 100%; }
+    .hero-btns .btn-action { width: 100%; box-sizing: border-box; justify-content: center; }
     
     .footer { font-size: 0.75rem; text-align: center; padding: 0 10px; line-height: 1.3; }
+}
+
+@media (max-width: 768px) {
+    .carousel-item { flex: 0 0 80%; min-width: 80%; }
+    .card-image { max-width: 200px; }
+    .carousel-arrow { width: 35px; height: 35px; font-size: 1.5rem; }
+    .left-arrow { left: 5px; }
+    .right-arrow { right: 5px; }
+    
+    /* Ajuste para que el botón de whatsapp no se cruce feo con el footer en móvil */
+    .whatsapp-float {
+        bottom: 85px; 
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
 }
