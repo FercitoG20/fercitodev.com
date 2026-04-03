@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. BARRA DE PROGRESO (SCROLL)
     const handleScroll = () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -12,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // 2. MODO OSCURO (PERSISTENTE)
     const btn = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme') || 'light';
 
@@ -37,22 +34,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. PARALLAX 3D SUTIL PARA LA TARJETA (SOLO DESKTOP)
-    const card = document.querySelector('.hero-glass-card');
-    if (card && window.innerWidth > 1024) {
-        document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.pageX) / 60;
-            const y = (window.innerHeight / 2 - e.pageY) / 60;
-            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === "#") return;
+            
+            e.preventDefault();
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
-    }
+    });
 
-    // 4. OBSERVADOR DE ANIMACIONES (REVEAL ON SCROLL)
-    const observerOptions = { 
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
+    const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -68,14 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // 5. FUNCIONALIDAD DEL MENÚ MÓVIL
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
     
     if(mobileBtn && navMenu) {
         mobileBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            
             const icon = mobileBtn.querySelector('i');
             if(navMenu.classList.contains('active')) {
                 icon.classList.replace('ri-menu-3-line', 'ri-close-line');
@@ -87,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.nav-link, .btn-theme, .btn-action').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                mobileBtn.querySelector('i').classList.replace('ri-close-line', 'ri-menu-3-line');
+                const icon = mobileBtn.querySelector('i');
+                if(icon) icon.classList.replace('ri-close-line', 'ri-menu-3-line');
             });
         });
     }

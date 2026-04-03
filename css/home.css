@@ -1,5 +1,4 @@
 :root {
-    /* MODO CLARO - REFORZADO */
     --bg-deep: #e2e8f0; 
     --glass-bg: rgba(255, 255, 255, 0.75); 
     --glass-border: #0284c7; 
@@ -9,7 +8,6 @@
     --accent-glow: rgba(2, 132, 199, 0.25); 
     --bg-pattern: radial-gradient(rgba(2, 132, 199, 0.15) 1px, transparent 1px);
     --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-    
     --glow-top: 30%; --glow-left: 40%; --glow-width: 60vw; --glow-height: 60vh; --glow-blur: 90px;
     --logo-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     --btn-primary-text: #ffffff;
@@ -19,7 +17,6 @@
 }
 
 body.dark-mode {
-    /* MODO OSCURO */
     --bg-deep: #020617; 
     --glass-bg: rgba(15, 23, 42, 0.8); 
     --glass-border: rgba(56, 189, 248, 0.4); 
@@ -32,11 +29,9 @@ body.dark-mode {
     --glow-top: 50%; --glow-left: 50%; --glow-width: 70vw; --glow-height: 70vh; --glow-blur: 120px;
 }
 
-/* --- BARRA DE PROGRESO --- */
 .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; z-index: 2000; }
 .progress-bar { height: 100%; width: 0%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
-/* --- BASE --- */
 body {
     margin: 0; font-family: 'Inter', sans-serif;
     background-color: var(--bg-deep); background-image: var(--bg-pattern);
@@ -52,7 +47,6 @@ body {
     z-index: -2; filter: blur(var(--glow-blur)); transition: all 0.5s ease;
 }
 
-/* --- CRISTALERÍA --- */
 .glass-panel {
     background: var(--glass-bg);
     backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
@@ -60,7 +54,6 @@ body {
     box-shadow: var(--glass-shadow);
 }
 
-/* --- NAVBAR --- */
 .navbar {
     position: fixed; top: 10px; left: 10px; right: 10px; height: 80px;
     border-radius: 16px; z-index: 1000; display: flex;
@@ -82,7 +75,6 @@ body {
 .nav-link { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
 .nav-link:hover { color: var(--accent); }
 
-/* --- BOTONES --- */
 .btn-theme {
     background: rgba(14, 165, 233, 0.1); border: 1px solid var(--glass-border); color: var(--text-main);
     padding: 8px 18px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.2s;
@@ -101,10 +93,8 @@ body {
     transform: var(--btn-primary-hover-transform); 
 }
 
-/* Ocultar botón menú en PC */
 .mobile-menu-btn { display: none; font-size: 2rem; color: var(--accent); cursor: pointer; }
 
-/* --- HERO GRID --- */
 .hero {
     min-height: 100vh; 
     display: flex; 
@@ -135,14 +125,12 @@ body {
     justify-content: center; 
 }
 
-/* --- IMAGEN FLOTANTE --- */
 .floating-img {
     max-width: 85%;
     max-height: 85%;
     object-fit: cover;
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    /* Animación de levitación */
     animation: floatImage 6s ease-in-out infinite;
 }
 
@@ -160,13 +148,12 @@ body {
 h1 { 
     font-size: clamp(3rem, 5vw, 4.8rem); 
     margin: 0; 
-    line-height: 1.1; 
+    line-height: 1.2; 
     letter-spacing: -2px; 
     font-weight: 900; 
 }
 h1.outline { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
 
-/* --- SECCIONES DE CONTENIDO --- */
 .section-container { padding: 120px 10%; }
 .section-title { font-size: 3.5rem; margin-bottom: 60px; text-align: center; font-weight: 900; }
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -177,25 +164,18 @@ h1.outline { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
 .service-card p { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; }
 .service-card:hover { transform: translateY(-15px); background: var(--glass-bg); }
 
-/* --- FOOTER --- */
 .footer {
     position: fixed; bottom: 10px; left: 10px; right: 10px; height: 60px;
     border-radius: 16px; z-index: 1000; display: flex; justify-content: center; align-items: center;
 }
 
-/* --- ANIMACIONES --- */
 @keyframes revealUp {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
 }
 .reveal-up { animation: revealUp 0.8s ease-out forwards; }
 
-
-/* =========================================================
-   RESPONSIVO: ADAPTACIÓN A MÓVILES Y TABLETS
-   ========================================================= */
 @media (max-width: 1100px) {
-    /* Navbar móvil */
     .navbar { padding: 0 20px; }
     .logo-img { height: 50px; }
     .nav-brand-title .main-title { font-size: 1rem; }
@@ -215,7 +195,6 @@ h1.outline { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
     .nav-menu.active { opacity: 1; pointer-events: all; transform: translateY(0); }
     .nav-menu .nav-link, .nav-menu .btn-theme, .nav-menu .btn-action { width: 100%; text-align: center; justify-content: center; }
 
-    /* Ajustes Hero Mobile */
     .hero { 
         align-items: flex-start;
         padding: 120px 5% 120px; 
@@ -224,10 +203,13 @@ h1.outline { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
     
     .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
     .hero-glass-card { padding: 40px 20px; }
-    h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); } 
+    h1 { 
+        font-size: clamp(2.5rem, 8vw, 3.5rem); 
+        line-height: 1.3;
+        letter-spacing: -0.5px;
+    } 
     .visual-container { height: 350px; }
     
-    /* Apilamos botones */
     .hero-btns { 
         display: flex; 
         flex-direction: column; 
