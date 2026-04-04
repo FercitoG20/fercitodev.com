@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Scroll y Progreso
     const handleScroll = () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -8,11 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if(progressBar) progressBar.style.width = scrolled + "%";
     };
     window.addEventListener('scroll', handleScroll);
-
-    // 2. Tema Oscuro/Claro
     const btn = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme') || 'light';
-
     const setTheme = (theme) => {
         if (theme === 'dark') {
             document.body.classList.add('dark-mode');
@@ -32,8 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }
-
-    // 3. Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -48,8 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // 4. Animación al hacer Scroll
     const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -61,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, observerOptions);
-
     const elementsToAnimate = document.querySelectorAll('.service-card, .section-title, .visual-container, .hero-glass-card');
     elementsToAnimate.forEach(el => {
         el.style.opacity = "0";
@@ -69,8 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = "all 0.6s ease-out";
         observer.observe(el);
     });
-
-    // 5. Menú Móvil
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
     if(mobileBtn && navMenu) {
@@ -83,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.replace('ri-close-line', 'ri-menu-3-line');
             }
         });
-
         document.querySelectorAll('.nav-link, .btn-theme, .btn-action').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -92,8 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    // 6. CARRUSEL CORREGIDO: EFECTO PEEKING CENTRADO
     const track = document.getElementById('carousel-track');
     if (track) {
         const items = document.querySelectorAll('.carousel-item');
@@ -123,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         };
-
         const resetAutoPlay = () => {
             clearInterval(autoPlay);
             autoPlay = setInterval(() => {
@@ -131,14 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateCarousel();
             }, 5000);
         };
-
         let autoPlay = setInterval(() => {
             currentIndex = (currentIndex + 1) >= items.length ? 0 : currentIndex + 1;
             updateCarousel();
         }, 5000);
-
         updateCarousel();
-
         if (btnPrev) {
             btnPrev.addEventListener('click', () => {
                 if (currentIndex > 0) currentIndex--;
@@ -147,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 resetAutoPlay();
             });
         }
-
         if (btnNext) {
             btnNext.addEventListener('click', () => {
                 if (currentIndex < items.length - 1) currentIndex++;
@@ -156,19 +137,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 resetAutoPlay();
             });
         }
-
         const dragStart = (e) => {
             clearInterval(autoPlay);
             isDragging = true;
             startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
             track.style.transition = 'none'; 
         };
-
         const dragMove = (e) => {
             if (!isDragging) return;
             const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
             const diff = x - startX;
-            
             const containerWidth = container.offsetWidth;
             const itemWidth = items[0].offsetWidth;
             const currentItemOffset = currentIndex * (itemWidth + gap);
@@ -177,12 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const baseTranslate = centerFlexOffset - currentItemOffset;
             track.style.transform = `translateX(${baseTranslate + diff}px)`;
         };
-
         const dragEnd = (e) => {
             if (!isDragging) return;
             isDragging = false;
             track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)'; 
-            
             let endX = e.type.includes('mouse') || e.type === 'mouseleave' ? (e.pageX || startX) : e.changedTouches[0].clientX;
             const diff = endX - startX;
             
@@ -190,11 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (diff > 0 && currentIndex > 0) currentIndex--;
                 else if (diff < 0 && currentIndex < items.length - 1) currentIndex++;
             }
-            
             updateCarousel();
             resetAutoPlay();
         };
-
         track.addEventListener('mousedown', dragStart);
         track.addEventListener('touchstart', dragStart, {passive: true});
         track.addEventListener('mousemove', dragMove);
@@ -202,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         track.addEventListener('mouseup', dragEnd);
         track.addEventListener('touchend', dragEnd);
         track.addEventListener('mouseleave', dragEnd);
-
         window.addEventListener('resize', updateCarousel);
     }
 });
